@@ -3,13 +3,13 @@ import shutil
 import time
 
 # Função para selecionar o diretório a ser organizados
-def selecionar_diretorio():
+def selecionarDir():
     diretorio = filedialog.askdirectory()
     if diretorio:
         organizar_arquivos(diretorio)
 
 # Função para organizar os arquivos em subdiretório
-def organizar_arquivos(diretorio):
+def organizarDir(diretorio):
     try:
         # Dicionário com as extensões e categorias
         tipos_arquivos = {
