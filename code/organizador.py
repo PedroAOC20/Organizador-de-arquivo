@@ -2,23 +2,17 @@ import os
 import shutil
 import time
 
-# Função para selecionar o diretório a ser organizados
-def selecionarDir():
-    diretorio = filedialog.askdirectory()
-    if diretorio:
-        organizarDir(diretorio)
-
 # Função para organizar os arquivos em subdiretório
 def organizarDir(diretorio):
-    try:
-        # Dicionário com as extensões e categorias
-        tipos_arquivos = {
-            'imagens': ['.jpg', '.jpeg', '.png', '.gif'],
-            'documentos': ['.txt', '.pdf', '.doc', '.docx'],
-            'musicas': ['.mp3', '.wav', '.flac'],
-			'video': ['.mp4', '.WebM']
-        }
+    # Dicionário com as extensões e categorias
+    tipos_arquivos = {
+        'imagens': ['.jpg', '.jpeg', '.png', '.gif'],
+        'documentos': ['.txt', '.pdf', '.doc', '.docx'],
+        'musicas': ['.mp3', '.wav', '.flac'],
+        'videos': ['.mp4', '.webm']
+    }
 
+    try:
         # Criar os diretórios de destino se não existirem
         for subdir in tipos_arquivos.keys():
             if not os.path.exists(os.path.join(diretorio, subdir)):
