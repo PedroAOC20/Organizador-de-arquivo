@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "arv-org"
 version = "0.1.0"
-description = ""
+description = "Projeto do organizador de arquivo do Desktop para Windows"
 authors = ["PedroAOC20 <pedrodeveloperpyc@gmail.com>"]
 readme = "README.md"
 
