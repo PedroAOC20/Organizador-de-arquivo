@@ -6,7 +6,7 @@ import time
 def selecionarDir():
     diretorio = filedialog.askdirectory()
     if diretorio:
-        organizar_arquivos(diretorio)
+        organizarDir(diretorio)
 
 # Função para organizar os arquivos em subdiretório
 def organizarDir(diretorio):
