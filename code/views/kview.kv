@@ -1,0 +1,27 @@
+#  2.3.0 
+BoxLayout:
+    orientation: 'vertical'
+    padding: 20
+    spacing: 10
+
+    Label:
+        text: 'Seja Bem-vindo ao Organizador de arquivos'
+        font_size: 18
+
+    BoxLayout:
+        size_hint_y: None
+        height: 40
+
+        TextInput:
+            id: input_diretorio
+            multiline: False
+
+        Button:
+            text: ''
+            font_name: 'default_font'
+            font_size: 24
+            on_press: app.abrir_seletor_diretorio()
+
+    Button:
+        text: 'Organizar Arquivos'
+        on_press: app.organizar_arquivos()
