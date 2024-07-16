@@ -2,15 +2,16 @@ import os
 import shutil
 import time
 
+# Função para selecionar o diretório a ser organizados
 def selecionar_diretorio():
     diretorio = filedialog.askdirectory()
     if diretorio:
         organizar_arquivos(diretorio)
 
-# Função para organizar os arquivos em s
+# Função para organizar os arquivos em subdiretório
 def organizar_arquivos(diretorio):
     try:
-        # Dicionário com as extensões e seus respectivos diretórios de destino
+        # Dicionário com as extensões e categorias
         tipos_arquivos = {
             'imagens': ['.jpg', '.jpeg', '.png', '.gif'],
             'documentos': ['.txt', '.pdf', '.doc', '.docx'],
@@ -45,9 +46,6 @@ def organizar_arquivos(diretorio):
         # Esperar 5 segundos antes de abrir o diretório
         time.sleep(5)
         os.startfile(diretorio)  # Abrir o diretório após 5 segundos
+
     except Exception as e:
         label_status.config(text=f"Erro ao organizar arquivos: {e}")
-
-# Função para selecionar o diretório a ser organizado
-
-
