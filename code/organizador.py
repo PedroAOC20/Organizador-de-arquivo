@@ -15,8 +15,7 @@ def organizarDir(diretorio):
     try:
         # Criar os diretórios de destino se não existirem
         for subdir in tipos_arquivos.keys():
-            if not os.path.exists(os.path.join(diretorio, subdir)):
-                os.makedirs(os.path.join(diretorio, subdir))
+           os.makedirs(os.path.join(diretorio, subdir), exist_ok=True)
 
         # Percorrer os arquivos no diretório
         for filename in os.listdir(diretorio):
@@ -35,11 +34,12 @@ def organizarDir(diretorio):
                         os.path.join(diretorio, tipo, filename)
                     )
                     break
-        
-        label_status.config(text="Arquivos organizados com sucesso!")
-        # Esperar 5 segundos antes de abrir o diretório
-        time.sleep(5)
-        os.startfile(diretorio)  # Abrir o diretório após 5 segundos
-
+        return print('Arquivos organizados com sucesso!')
+    
+    except FileNotFoundError:
+        return print('Diretorio não encontrado!')
+    except PermissionError:
+        return print('Seu usuario não possui permissão para mover esse arquivo!')
     except Exception as e:
-        label_status.config(text=f"Erro ao organizar arquivos: {e}")
+        return print(f'erro ao organizar arquivos: {e}')
+        
