@@ -5,6 +5,7 @@ from kivy.uix.label import Label
 from kivy.uix.filechooser import FileChooserListView
 from organizador import organizarDir
 from organizador import msmFinal
+from plyer import filechooser 
 
 GUI = Builder.load_file('Views/kview.kv')
 
@@ -15,19 +16,12 @@ class OrganizadorApp(App):
     
     #Função para abrir o diretorio
     def abrir_seletor_diretorio(self):
-        popup = Popup(
-            title='Selecione a Pasta desejada',
-            title_size= '14sp',
-            size_hint=(0.8,0.8)
-        )
-
-        filechooser = FileChooserListView()
-        filechooser.bind(
-            on_selection=self.selecionar_diretorio
-        )
-
-        popup.content = filechooser
-        popup.open()
+         # Usar o seletor nativo do S.O do usuário
+        paths = filechooser.choose_dir(title='Selecione a Pasta desejada:') 
+        
+        if paths:
+            diretorio = paths[0]
+            self.root.ids.input_diretorio.text = diretorio
     
     
     #Função de selecionar repositorio
