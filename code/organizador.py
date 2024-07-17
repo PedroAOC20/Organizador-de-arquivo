@@ -1,11 +1,11 @@
 import os
 import shutil
-import time
 
 msmFinal = 'Arquivos organizados com sucesso!'
+
 # Função para organizar os arquivos em subdiretório
 def organizarDir(diretorio):
-    # Dicionário com as extensões e categorias
+    # Tupla com as extensões e categorias
     tipos_arquivos = {
         'imagens': ['.jpg', '.jpeg', '.png', '.gif'],
         'documentos': ['.txt', '.pdf', '.doc', '.docx'],
