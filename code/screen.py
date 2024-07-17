@@ -2,7 +2,6 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
-from kivy.uix.filechooser import FileChooserListView
 from organizador import organizarDir
 from organizador import msmFinal
 from plyer import filechooser 
