@@ -23,7 +23,6 @@ class OrganizadorApp(App):
             diretorio = paths[0]
             self.root.ids.input_diretorio.text = diretorio
     
-    
     #Função de selecionar repositorio
     def selecionar_diretorio(self, instance, selection):
         if selection:
