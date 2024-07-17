@@ -1,27 +1,36 @@
-#  2.3.0 
 BoxLayout:
-    orientation: 'vertical'
-    padding: 20
-    spacing: 10
+    #Objetos na vertifical
+    orientation: 'vertical'     
+    padding: 30 
+    
+    #espaçamento dos elementos
+    spacing: 20     
 
     Label:
-        text: 'Seja Bem-vindo ao Organizador de arquivos'
-        font_size: 18
+        text: 'Seja Bem-vindo ao Organizador de arquivos.\nNo campo abaixo pode clicar no botão ou digitar o caminho que deseja organiza os arquivos.'
+        font_size: 20
 
-    BoxLayout:
+    FloatLayout:
         size_hint_y: None
         height: 40
 
         TextInput:
             id: input_diretorio
             multiline: False
+            size_hint_x: 0.8
+            pos_hint: {'x': 0.2, 'y': 0}  # Posiciona o input à direita
 
         Button:
-            text: ''
-            font_name: 'default_font'
-            font_size: 24
+            text: 'Selecione a pasta'
+            font_size: 18
+            size_hint_x: 0.2
+            pos_hint: {'x': 0, 'y': 0}  # Posiciona o botão à esquerda
             on_press: app.abrir_seletor_diretorio()
 
     Button:
-        text: 'Organizar Arquivos'
+        text: 'Clique aqui para Organizar Arquivos!'
+        font_size: 22
+        height: 60
+        size_hint_x: 1.0
+        size_hint_y: None
         on_press: app.organizar_arquivos()
