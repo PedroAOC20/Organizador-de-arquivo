@@ -1,4 +1,3 @@
-
 from screen import OrganizadorApp
 
 if __name__ == '__main__':
