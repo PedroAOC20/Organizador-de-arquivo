@@ -3,9 +3,7 @@ import shutil
 
 msmFinal = 'Arquivos organizados com sucesso!'
 
-# Função para organizar os arquivos em subdiretório
 def organizarDir(diretorio):
-    # Tupla com as extensões e categorias
     tipos_arquivos = {
         'imagens': ['.jpg', '.jpeg', '.png', '.gif'],
         'documentos': ['.txt', '.pdf', '.doc', '.docx'],
@@ -14,33 +12,34 @@ def organizarDir(diretorio):
     }
 
     try:
-        # Criar os diretórios de destino se não existirem
-        for subdir in tipos_arquivos.keys():
-           os.makedirs(os.path.join(diretorio, subdir), exist_ok=True)
+        # Verificar se o diretório existe
+        if not os.path.exists(diretorio):
+            raise FileNotFoundError('Diretório não encontrado!')
 
         # Percorrer os arquivos no diretório
         for filename in os.listdir(diretorio):
+            filepath = os.path.join(diretorio, filename)
+
             # Ignorar subdiretórios
-            if os.path.isdir(os.path.join(diretorio, filename)):
+            if os.path.isdir(filepath):
                 continue
-            
+
             # Obter a extensão do arquivo
             _, extensao = os.path.splitext(filename)
 
-            # Mover o arquivo para o diretório correspondente
+            # Mover o arquivo para o diretório correspondente, criando-o se necessário
             for tipo, extensoes in tipos_arquivos.items():
                 if extensao.lower() in extensoes:
-                    shutil.move(
-                        os.path.join(diretorio, filename),
-                        os.path.join(diretorio, tipo, filename)
-                    )
-                    break
+                    pasta_destino = os.path.join(diretorio, tipo)
+                    os.makedirs(pasta_destino, exist_ok=True)  # Cria a pasta se não existir
+                    shutil.move(filepath, os.path.join(pasta_destino, filename))
+                    break  # Sai do loop interno após mover o arquivo
+
         return msmFinal
-    
-    except FileNotFoundError:
-        return print('Diretorio não encontrado!')
-    except PermissionError:
-        return print('Seu usuario não possui permissão para mover esse arquivo!')
+
+    except FileNotFoundError as e:
+        return f"Erro: {e}"
+    except PermissionError as e:
+        return f"Erro: {e}"
     except Exception as e:
-        return print(f'erro ao organizar arquivos: {e}')
-        
+        return f"Erro ao organizar arquivos: {e}"
