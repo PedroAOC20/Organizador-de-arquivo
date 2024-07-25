@@ -32,13 +32,12 @@ class OrganizadorApp(App):
     def organizar_arquivos(self):
         diretorio = self.root.ids.input_diretorio.text
         if diretorio:
-            resultado = organizarDir(diretorio)
-            self.root.ids.label_status.text = resultado
+            try:
+                resultado = organizarDir(diretorio)
+                self.root.ids.label_status.text = resultado
 
-            if resultado == msmFinal:
-                popup = Popup(
-                    title = 'Sucesso!',
-                    title_size= '14sp',
-                    content = Label(text=resultado)
-                )
-                popup.open()
+                if resultado == msmFinal:
+                    popup = Popup(title='Sucesso!', title_size='14sp', content=Label(text=resultado))
+                    popup.open()
+            except Exception as e:
+                self.root.ids.label_status.text = f"Erro: {e}"
