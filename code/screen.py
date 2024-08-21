@@ -2,33 +2,21 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
-from organizador import organizarDir
-from organizador import msmFinal
-from plyer import filechooser 
+from kivy.uix.button import Button
+from kivy.uix.boxlayout import BoxLayout
+from plyer import filechooser
+from organizador import organizarDir, msmFinal
 
 GUI = Builder.load_file('Views/kview.kv')
-
 class OrganizadorApp(App):
-    #meu construtor de tela
     def build(self):
         return GUI
     
-    #Função para abrir o diretorio
     def abrir_seletor_diretorio(self):
-         # Usar o seletor nativo do S.O do usuário
-        paths = filechooser.choose_dir(title='Selecione a Pasta desejada:') 
-        
+        paths = filechooser.choose_dir(title='Selecione a Pasta desejada:')
         if paths:
-            diretorio = paths[0]
-            self.root.ids.input_diretorio.text = diretorio
+            self.root.ids.input_diretorio.text = paths[0]
     
-    #Função de selecionar repositorio
-    def selecionar_diretorio(self, instance, selection):
-        if selection:
-            diretorio = selection[0]
-            self.root.ids.input_diretorio.text = diretorio
-            instance.parent.dismiss()
-
     def organizar_arquivos(self):
         diretorio = self.root.ids.input_diretorio.text
         if diretorio:
@@ -37,7 +25,33 @@ class OrganizadorApp(App):
                 self.root.ids.label_status.text = resultado
 
                 if resultado == msmFinal:
-                    popup = Popup(title='Sucesso!', title_size='14sp', content=Label(text=resultado))
-                    popup.open()
+                    self.exibir_popup_sucesso(resultado)
             except Exception as e:
                 self.root.ids.label_status.text = f"Erro: {e}"
+
+    def exibir_popup_sucesso(self, mensagem):
+        layout = BoxLayout(
+            orientation='vertical',
+            padding=10, 
+            spacing=10
+        )
+        
+        label = Label(text=mensagem)
+        popup = Popup(
+            title='Sucesso!', 
+            title_size='14sp', 
+            content=layout, 
+            size_hint=(0.75, 0.5)
+        )
+        
+        retomar_btn = Button(
+            text="Retomar", 
+            size_hint_y=None, 
+            height=50, 
+            on_press=popup.dismiss
+        )
+        
+        layout.add_widget(label)
+        layout.add_widget(retomar_btn)
+        
+        popup.open()
