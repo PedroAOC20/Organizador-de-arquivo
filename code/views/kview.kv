@@ -1,15 +1,12 @@
 BoxLayout:
-    #Objetos na vertifical
-    orientation: 'vertical'     
-    padding: 30 
-    
-    #espaçamento dos elementos
-    spacing: 20     
+    orientation: 'vertical'
+    padding: 30
+    spacing: 20
 
     Label:
-        text: 'Seja Bem-vindo ao Organizador de arquivos.\nNo campo abaixo pode clicar no botão ou digitar o caminho que deseja organiza os arquivos.'
+        text: 'Seja Bem-vindo ao Organizador de arquivos.\nNo campo abaixo pode clicar no botão ou digitar o caminho que deseja organizar os arquivos.'
         font_size: 20
-    
+
     Label:
         id: label_status
         text: "Status:"  
@@ -38,3 +35,20 @@ BoxLayout:
         size_hint_x: 1.0
         size_hint_y: None
         on_press: app.organizar_arquivos()
+
+<Popup>:
+    title: 'Sucesso!'
+    title_size: '14sp'
+    size_hint: 0.75, 0.5
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        Label:
+            id: popup_label
+            text: ''
+        Button:
+            text: "Retomar"
+            size_hint_y: None
+            height: 50
+            on_press: root.dismiss()
