@@ -27,11 +27,11 @@ def organizarDir(diretorio):
             # Obter a extensão do arquivo
             _, extensao = os.path.splitext(filename)
 
-            # Mover o arquivo para o diretório correspondente, criando-o se necessário
+            # Mover o arquivo para o diretório certo, criando-o se preciso
             for tipo, extensoes in tipos_arquivos.items():
                 if extensao.lower() in extensoes:
                     pasta_destino = os.path.join(diretorio, tipo)
-                    os.makedirs(pasta_destino, exist_ok=True)  # Cria a pasta se não existir
+                    os.makedirs(pasta_destino, exist_ok=True)  
                     shutil.move(filepath, os.path.join(pasta_destino, filename))
                     break  # Sai do loop interno após mover o arquivo
 
