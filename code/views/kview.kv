@@ -35,20 +35,3 @@ BoxLayout:
         size_hint_x: 1.0
         size_hint_y: None
         on_press: app.organizar_arquivos()
-
-<Popup>:
-    title: 'Sucesso!'
-    title_size: '14sp'
-    size_hint: 0.75, 0.5
-    BoxLayout:
-        orientation: 'vertical'
-        padding: 10
-        spacing: 10
-        Label:
-            id: popup_label
-            text: ''
-        Button:
-            text: "Retomar"
-            size_hint_y: None
-            height: 50
-            on_press: root.dismiss()
